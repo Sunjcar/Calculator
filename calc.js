@@ -12,9 +12,11 @@ const btnAdd = document.getElementById('+');
 const btnMult = document.getElementById('*');
 const btnSub = document.getElementById('-');
 const btnDivide = document.getElementById('/');
-const btnEqual = document.getElementById('=')
-const btnClear = document.getElementById('clear')
-const operator = document.querySelectorAll('.operator')
+const btnEqual = document.getElementById('=');
+const btnClear = document.getElementById('clear');
+const operator = document.querySelectorAll('.operator');
+const btnDot = document.getElementById('.');
+const btnDelete = document.getElementById('delete')
 
 btnOne.addEventListener('click',clickListener);
 btnTwo.addEventListener('click',clickListener);
@@ -31,14 +33,16 @@ btnMult.addEventListener('click',Operator);
 btnSub.addEventListener('click',Operator);
 btnDivide.addEventListener('click',Operator);
 btnEqual.addEventListener('click', results);
-btnClear.addEventListener('click',reset)
+btnClear.addEventListener('click',reset);
+btnDot.addEventListener('click',clickListener);
+btnDelete.addEventListener('click',deleteNumber);
 
 let storedNum = '';
 let clickedOperator = ' '
 let firstNumber = '';
 let result = '';
-inputOne.textContent = ' ';
-inputTwo.textContent = ' ';
+inputOne.textContent = '';
+inputTwo.textContent = 0;
 
 
 //add function
@@ -63,6 +67,9 @@ function sub(a,b){
 //divide function
 function divide(a,b){
     let x = a / b;
+    if (b === 0){
+    return "Are you an idiot!? It's always 0!" 
+    }else
     return x;
 };
 
@@ -80,28 +87,43 @@ function operate(a,b,clickedOperator){
 }
 //Takes initial user input via # button
 function clickListener(event){
-    storedNum = event.target.id; 
-    inputOne.textContent = storedNum;
+    storedNum += event.target.id;
+    inputTwo.textContent = storedNum;
 }
 
 //Stores initial input and takes operator input
 function Operator(event){
+    if (firstNumber && storedNum) {
+        results();}
   firstNumber = storedNum;
   clickedOperator = event.target.id;
   operator.textContent = clickedOperator; 
-  inputOne.textContent = operator.textContent
+  inputOne.textContent = operator.textContent;
   storedNum = '';
+
+
 }
+
 
  //Calls function corresponding to the operator clicked and returns value.
  function results(){
-   result = operate(parseFloat(firstNumber),parseFloat(storedNum),clickedOperator);
-    inputOne.textContent = result; 
-    storedNum = result;
+  const result = operate(parseFloat(firstNumber),parseFloat(storedNum),clickedOperator);
+    inputTwo.textContent = result; 
+    inputOne.textContent = firstNumber + ' ' +clickedOperator + ' '+ storedNum;
+    storedNum = result; 
 }
 
 //Resets textContent
 function reset(){
-    inputOne.textContent = ' ';
-    inputTwo.textContent = ' '; 
+    storedNum='';
+    firstNumber = '';
+    inputOne.textContent = '';
+    inputTwo.textContent = 0;  
 }
+
+//Delete Button
+function deleteNumber() {
+    inputOne.textContent = inputOne.textContent
+      .toString()
+      .slice(0, -1)
+  }

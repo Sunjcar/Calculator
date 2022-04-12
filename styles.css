@@ -1,0 +1,58 @@
+html{
+    background-color: #eee;
+}
+body{
+    border: 30px #aaa solid;
+    margin:330px;
+    border-radius: 15px;
+    width:400px;
+}
+
+container{
+display:grid;
+justify-items: end;
+border: 50px #eee solid ;
+border-radius: 15px;
+font-size: large;
+font-weight: bolder;
+}
+
+.reset{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    grid-gap: 5px;
+}
+
+.Numbers{
+    display:grid;
+    grid-template-columns: repeat(4,1fr);
+    grid-gap: 8px;
+    justify-content: center;
+    background-color: #aaa;
+    padding-top: 10px;
+}
+
+button{
+    padding:2px;
+    border: 2px #333 solid;
+    border-radius: 5px;
+    font-size: 20px;
+    background-color: #eee;
+    
+}
+
+.clear{
+    background-color: red;
+}
+.delete{
+    background-color: pink;
+}
+.operator {
+    background-color:royalblue
+}
+
+
+footer{
+    text-align: center;
+    background-color: #aaa;
+}
