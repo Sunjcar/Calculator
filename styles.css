@@ -1,22 +1,54 @@
+
 html{
-    background-color: #eee;
+    position:relative;
+  
 }
 body{
-    border: 30px #aaa solid;
-    margin:330px;
-    border-radius: 15px;
-    width:400px;
+    background-image:url('Math.png'); 
+    height: 100vh;
+    padding:0;
+    margin:0;
 }
 
 container{
-display:grid;
-justify-items: end;
-border: 50px #eee solid ;
-border-radius: 15px;
-font-size: large;
-font-weight: bolder;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 75vh;
+    min-height: 500px;
+    padding: 10px;
+    margin-top: 50px;
 }
 
+.calculator{
+    width: 400px;
+    border: 2px #333 solid;
+    border-radius: 15px;
+    padding: 20px;
+    align-items: center;
+    background-color: #333;
+   
+}
+.Display{
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    background-color: var(--screen);
+    text-align: right;
+    word-wrap: break-word;
+    word-break: break-all;
+    background-color: #eee;
+}
+
+.inputOne{
+    min-height:30px;
+    font-size: 17px;
+}
+.inputTwo{
+    min-height: 60px;
+    font-size: 38px;
+    
+}
 .reset{
     display: grid;
     grid-template-columns: repeat(2,1fr);
@@ -38,7 +70,7 @@ button{
     border-radius: 5px;
     font-size: 20px;
     background-color: #eee;
-    
+   
 }
 
 .clear{
@@ -51,8 +83,15 @@ button{
     background-color:royalblue
 }
 
+footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px;
+    font-size: 20px;
+    gap: 10px;
+  }
 
-footer{
-    text-align: center;
-    background-color: #aaa;
-}

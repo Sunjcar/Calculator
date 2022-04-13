@@ -42,7 +42,7 @@ let clickedOperator = ' '
 let firstNumber = '';
 let result = '';
 inputOne.textContent = '';
-inputTwo.textContent = 0;
+inputTwo.textContent = '';
 
 
 //add function
@@ -68,7 +68,7 @@ function sub(a,b){
 function divide(a,b){
     let x = a / b;
     if (b === 0){
-    return "Are you an idiot!? It's always 0!" 
+    return "It's always 0!" 
     }else
     return x;
 };
@@ -94,11 +94,12 @@ function clickListener(event){
 //Stores initial input and takes operator input
 function Operator(event){
     if (firstNumber && storedNum) {
-        results();}
+        results();
+    }
   firstNumber = storedNum;
   clickedOperator = event.target.id;
   operator.textContent = clickedOperator; 
-  inputOne.textContent = operator.textContent;
+  inputTwo.textContent = firstNumber + ' ' +clickedOperator;
   storedNum = '';
 
 
@@ -111,6 +112,8 @@ function Operator(event){
     inputTwo.textContent = result; 
     inputOne.textContent = firstNumber + ' ' +clickedOperator + ' '+ storedNum;
     storedNum = result; 
+    firstNumber = ''
+   
 }
 
 //Resets textContent
@@ -118,7 +121,7 @@ function reset(){
     storedNum='';
     firstNumber = '';
     inputOne.textContent = '';
-    inputTwo.textContent = 0;  
+    inputTwo.textContent = '';  
 }
 
 //Delete Button
@@ -127,3 +130,4 @@ function deleteNumber() {
       .toString()
       .slice(0, -1)
   }
+
