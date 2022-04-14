@@ -87,8 +87,12 @@ function operate(a,b,clickedOperator){
 }
 //Takes initial user input via # button
 function clickListener(event){
+    if (event.target.id ==='.'){
+        btnDot.setAttribute('disabled',1)
+    }
     storedNum += event.target.id;
     inputTwo.textContent = storedNum;
+    
 }
 
 //Stores initial input and takes operator input
@@ -98,13 +102,14 @@ function Operator(event){
     }
   firstNumber = storedNum;
   clickedOperator = event.target.id;
-  operator.textContent = clickedOperator; 
-  inputTwo.textContent = firstNumber + ' ' +clickedOperator;
+  
+  inputOne.textContent = firstNumber + ' ' +clickedOperator;
+  inputTwo.textContent = ''
   storedNum = '';
+  btnDot.removeAttribute('disabled')  
 
 
 }
-
 
  //Calls function corresponding to the operator clicked and returns value.
  function results(){
@@ -113,21 +118,27 @@ function Operator(event){
     inputOne.textContent = firstNumber + ' ' +clickedOperator + ' '+ storedNum;
     storedNum = result; 
     firstNumber = ''
+    btnDot.removeAttribute('disabled')
    
 }
-
 //Resets textContent
 function reset(){
     storedNum='';
     firstNumber = '';
     inputOne.textContent = '';
     inputTwo.textContent = '';  
+    btnDot.removeAttribute('disabled')
 }
 
 //Delete Button
 function deleteNumber() {
-    inputOne.textContent = inputOne.textContent
-      .toString()
-      .slice(0, -1)
+    inputOne.textContent = inputOne.textContent.toString()
+    .slice(0, -1);
+    inputOne.textContent = firstNumber;
+     inputTwo.textContent = inputTwo.textContent.toString()
+    .slice(0, -1);
+    storedNum = inputTwo.textContent;
+
+    btnDot.removeAttribute('disabled')  
   }
 
