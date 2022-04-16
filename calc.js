@@ -37,13 +37,14 @@ btnClear.addEventListener('click',reset);
 btnDot.addEventListener('click',clickListener);
 btnDelete.addEventListener('click',deleteNumber);
 
+   
 let storedNum = '';
-let clickedOperator = ' '
+let clickedOperator = ' ';
 let firstNumber = '';
 let result = '';
 inputOne.textContent = '';
 inputTwo.textContent = '';
-
+let currentOperation = null
 
 //add function
 function add(a,b){
@@ -67,7 +68,7 @@ function sub(a,b){
 //divide function
 function divide(a,b){
     let x = a / b;
-    if (b === 0){
+    if (b === 0 ){
     return "It's always 0!" 
     }else
     return x;
@@ -91,35 +92,36 @@ function clickListener(event){
         btnDot.setAttribute('disabled',1)
     }
     storedNum += event.target.id;
-    inputTwo.textContent = storedNum;
-    
+    inputOne.textContent = storedNum;
 }
 
 //Stores initial input and takes operator input
 function Operator(event){
-    if (firstNumber && storedNum) {
+    if (firstNumber && storedNum ) {
         results();
-    }
+        }   
+  storedNum = inputOne.textContent;
   firstNumber = storedNum;
+  inputTwo.textContent = storedNum;
   clickedOperator = event.target.id;
-  
-  inputOne.textContent = firstNumber + ' ' +clickedOperator;
-  inputTwo.textContent = ''
   storedNum = '';
+  inputTwo.textContent = firstNumber + ' ' +clickedOperator;
+  
   btnDot.removeAttribute('disabled')  
-
-
 }
 
  //Calls function corresponding to the operator clicked and returns value.
  function results(){
+     if (firstNumber === '' || storedNum === '' || clickedOperator === ''){
+         return ""
+     }
   const result = operate(parseFloat(firstNumber),parseFloat(storedNum),clickedOperator);
-    inputTwo.textContent = result; 
-    inputOne.textContent = firstNumber + ' ' +clickedOperator + ' '+ storedNum;
+    inputOne.textContent = result; 
+    inputTwo.textContent = firstNumber + ' ' +clickedOperator + ' '+ storedNum;
     storedNum = result; 
-    firstNumber = ''
+    storedNum = '';
+
     btnDot.removeAttribute('disabled')
-   
 }
 //Resets textContent
 function reset(){
@@ -132,13 +134,6 @@ function reset(){
 
 //Delete Button
 function deleteNumber() {
-    inputOne.textContent = inputOne.textContent.toString()
-    .slice(0, -1);
-    inputOne.textContent = firstNumber;
-     inputTwo.textContent = inputTwo.textContent.toString()
-    .slice(0, -1);
-    storedNum = inputTwo.textContent;
+    inputTwo.textContent = inputTwo.textContent.toString().slice(0,-1);}
 
-    btnDot.removeAttribute('disabled')  
-  }
-
+//Keyboard Support
