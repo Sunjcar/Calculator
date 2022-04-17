@@ -91,10 +91,9 @@ function clickListener(event){
     if (event.target.id ==='.'){
         btnDot.setAttribute('disabled',1)
     }
-    storedNum += event.target.id;
+    storedNum += event.target.id
     inputOne.textContent = storedNum;
-}
-
+    }
 //Stores initial input and takes operator input
 function Operator(event){
     if (firstNumber && storedNum ) {
@@ -113,13 +112,14 @@ function Operator(event){
  //Calls function corresponding to the operator clicked and returns value.
  function results(){
      if (firstNumber === '' || storedNum === '' || clickedOperator === ''){
-         return ""
+         return;
      }
   const result = operate(parseFloat(firstNumber),parseFloat(storedNum),clickedOperator);
     inputOne.textContent = result; 
     inputTwo.textContent = firstNumber + ' ' +clickedOperator + ' '+ storedNum;
     storedNum = result; 
     storedNum = '';
+    firstNumber = '';
 
     btnDot.removeAttribute('disabled')
 }
@@ -134,6 +134,31 @@ function reset(){
 
 //Delete Button
 function deleteNumber() {
-    inputTwo.textContent = inputTwo.textContent.toString().slice(0,-1);}
+    btnDot.removeAttribute('disabled')
+    
+    if(inputTwo.textContent === ''){
+        return inputOne.textContent = inputOne.textContent.toString().slice(0,-1) ;
+    }else 
+        return inputTwo.textContent = inputTwo.textContent.toString().slice(0,-1);
+ } 
+//Keyboard support numbers and operators 
+  window.addEventListener('keydown', function(e) {
+    let button = document.getElementById(e.key);
+    const keyName = e.key;
+    e.preventDefault();
+    if(keyName === 'Escape') {
+      reset();
+    }
+  
+    if(keyName === 'Backspace') {
+      deleteNumber();
+    }
+    if(keyName === 'Enter' || (keyName === '=' && firstNumber != '' && storedNum != '')) {
+      results();
+    }
+    if(button === null){
+        button = document.querySelector(`[data-alt='${e.key}'`)   
+    }
+    button.click();
+});
 
-//Keyboard Support
